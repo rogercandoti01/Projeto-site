@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payin - Gestão Financeira Inteligente</title>
+  
+  <!-- Fontes do Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  
+  <!-- Estilos customizados -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       HEADER & NAVEGAÇÃO SUPERIOR
+       ========================================================================== -->
+  <header class="app-header">
+    <div class="app-container">
+      <div class="header-content">
+        <!-- Logo e Marca -->
+        <a href="#" class="brand-wrapper" id="brandLink">
+          <div class="brand-logo-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+          </div>
+          <div class="brand-name">
+            Payin <span>Finance</span>
+          </div>
+        </a>
+
+        <!-- Abas de Navegação -->
+        <nav class="header-nav">
+          <button class="nav-tab-btn active" data-tab="tab-monthly">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            Controle Mensal
+          </button>
+          
+          <button class="nav-tab-btn" data-tab="tab-dashboard">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="20" x2="18" y2="10"/>
+              <line x1="12" y1="20" x2="12" y2="4"/>
+              <line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+            Dashboard Geral
+          </button>
+          
+          <button class="nav-tab-btn" data-tab="tab-reports">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10 9 9 9 8 9"/>
+            </svg>
+            Relatórios & CSV
+          </button>
+        </nav>
+
+        <!-- Ações do Header (Tema e Usuário) -->
+        <div class="header-actions">
+          <!-- Botão Alternar Tema Claro/Escuro -->
+          <button class="btn-theme-toggle" id="btnThemeToggle" title="Alternar Tema Claro / Escuro">
+            <svg id="themeIconSun" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"/>
+              <line x1="12" y1="1" x2="12" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="23"/>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+              <line x1="1" y1="12" x2="3" y2="12"/>
+              <line x1="21" y1="12" x2="23" y2="12"/>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+            <svg id="themeIconMoon" style="display:none;" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </button>
+
+          <!-- Perfil do Usuário Ativo -->
+          <div class="user-menu-pill" id="btnOpenUserModal" title="Gerenciar Usuários">
+            <div class="user-avatar-circle" id="userAvatarLetter">U</div>
+            <span class="user-name-text" id="currentUserName">Usuário</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       CONTEÚDO PRINCIPAL
+       ========================================================================== -->
+  <main class="app-container">
+
+    <!-- ======================================================================
+         ABA 1: CONTROLE MENSAL (MÊS A MÊS)
+         ====================================================================== -->
+    <section id="tab-monthly" class="tab-pane active">
+      
+      <!-- Seletor de Mês e Ações Rápidas -->
+      <div class="month-selector-bar">
+        <div class="month-nav-controls">
+          <button class="btn-nav-month" id="btnPrevMonth" title="Mês Anterior">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"/>
+            </svg>
+          </button>
+          
+          <div class="current-month-display" id="currentMonthLabel">Novembro / 2026</div>
+          
+          <button class="btn-nav-month" id="btnNextMonth" title="Próximo Mês">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </button>
+
+          <input type="month" class="month-picker-select" id="monthPickerInput" value="2026-11">
+        </div>
+
+        <div class="action-buttons-group">
+          <button class="btn btn-outline btn-sm" id="btnCurrentMonth">
+            Hoje
+          </button>
+          <button class="btn btn-secondary" id="btnOpenIncomeModal">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            Nova Receita
+          </button>
+          <button class="btn btn-primary" id="btnOpenExpenseModal">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            Novo Gasto
+          </button>
+        </div>
+      </div>
+
+      <!-- Cards de Resumo do Mês (KPIs) -->
+      <div class="kpi-grid">
+        <!-- Total de Gastos -->
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span class="kpi-title">Total de Gastos</span>
+            <div class="kpi-icon-bubble">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/>
+                <polyline points="17 18 23 18 23 12"/>
+              </svg>
+            </div>
+          </div>
+          <div class="kpi-value" id="kpiMonthTotalExpenses">R$ 0,00</div>
+          <div class="kpi-subtext">
+            <span id="kpiMonthCountExpenses">0 despesas cadastradas</span>
+          </div>
+        </div>
+
+        <!-- Gastos Fixos -->
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span class="kpi-title">Contas Fixas</span>
+            <div class="kpi-icon-bubble">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7"/>
+                <rect x="14" y="3" width="7" height="7"/>
+                <rect x="14" y="14" width="7" height="7"/>
+                <rect x="3" y="14" width="7" height="7"/>
+              </svg>
+            </div>
+          </div>
+          <div class="kpi-value" id="kpiMonthFixedExpenses">R$ 0,00</div>
+          <div class="kpi-subtext">
+            <span class="highlight neutral" id="kpiMonthFixedPercent">0% do total</span>
+          </div>
+        </div>
+
+        <!-- Gastos Variáveis -->
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span class="kpi-title">Contas Variáveis</span>
+            <div class="kpi-icon-bubble">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1"/>
+                <circle cx="20" cy="21" r="1"/>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+              </svg>
+            </div>
+          </div>
+          <div class="kpi-value" id="kpiMonthVariableExpenses">R$ 0,00</div>
+          <div class="kpi-subtext">
+            <span class="highlight neutral" id="kpiMonthVariablePercent">0% do total</span>
+          </div>
+        </div>
+
+        <!-- Receitas e Saldo -->
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span class="kpi-title">Saldo do Mês</span>
+            <div class="kpi-icon-bubble">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
+          </div>
+          <div class="kpi-value" id="kpiMonthBalance">R$ 0,00</div>
+          <div class="kpi-subtext">
+            <span>Receitas: <strong id="kpiMonthIncomes">R$ 0,00</strong></span>
+          </div>
+        </div>
+
+        <!-- Pagas vs Pendentes -->
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span class="kpi-title">Status de Pagamento</span>
+            <div class="kpi-icon-bubble">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 14 14"/>
+              </svg>
+            </div>
+          </div>
+          <div class="kpi-value" id="kpiMonthPaidTotal">R$ 0,00</div>
+          <div class="kpi-subtext">
+            <span class="highlight success" id="kpiMonthPaidCount">0 pagas</span>
+            <span class="highlight warning" id="kpiMonthPendingCount">0 pendentes</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filtros Avançados -->
+      <div class="filters-panel">
+        <div class="filters-row">
+          <!-- Busca por texto -->
+          <div class="filter-search-box">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input type="text" id="filterSearchInput" placeholder="Buscar por descrição, o que foi comprado ou observação...">
+          </div>
+
+          <!-- Filtro Tipo (Fixo / Variável) -->
+          <div class="filter-pills-group" id="filterTypeGroup">
+            <button class="filter-pill active" data-type="all">Todos</button>
+            <button class="filter-pill" data-type="fixo">Fixos</button>
+            <button class="filter-pill" data-type="variavel">Variáveis</button>
+          </div>
+
+          <!-- Filtro Pagamento (À vista / A prazo) -->
+          <div class="filter-pills-group" id="filterPaymentTermGroup">
+            <button class="filter-pill active" data-term="all">Todos</button>
+            <button class="filter-pill" data-term="vista">À vista</button>
+            <button class="filter-pill" data-term="prazo">A prazo</button>
+          </div>
+
+          <!-- Filtro Status (Pago / Pendente) -->
+          <select class="filter-select" id="filterStatusSelect">
+            <option value="all">Todos os Status</option>
+            <option value="pago">Pagas</option>
+            <option value="pendente">Pendentes</option>
+          </select>
+
+          <!-- Filtro Categoria -->
+          <select class="filter-select" id="filterCategorySelect">
+            <option value="all">Todas as Categorias</option>
+          </select>
+
+          <!-- Botão Limpar Filtros -->
+          <button class="btn btn-outline btn-sm" id="btnResetFilters" title="Limpar todos os filtros">
+            Limpar
+          </button>
+        </div>
+      </div>
+
+      <!-- Tabela de Contas e Gastos do Mês -->
+      <div class="table-card">
+        <div class="table-header-title">
+          <h3>Gastos de <span id="tableMonthTitle">Novembro / 2026</span></h3>
+          <span class="badge badge-fixed" id="tableRowCountBadge">0 registros</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="payin-table" id="monthExpensesTable">
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>O que foi comprado / Conta</th>
+                <th>Categoria</th>
+                <th>Tipo</th>
+                <th>Pagamento</th>
+                <th>Valor</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="monthExpensesTableBody">
+              <!-- Renderizado via JavaScript -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Estado Vazio -->
+        <div class="empty-state" id="emptyStateExpenses" style="display: none;">
+          <div class="empty-state-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="M7 15h0M2 9.5h20"/>
+            </svg>
+          </div>
+          <h4>Nenhum gasto encontrado</h4>
+          <p>Você ainda não cadastrou despesas para este mês ou nenhum registro corresponde aos filtros selecionados.</p>
+          <button class="btn btn-primary btn-sm" id="btnEmptyAddExpense">Cadastrar Gasto</button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ======================================================================
+         ABA 2: DASHBOARD GERAL (TODOS OS MESES)
+         ====================================================================== -->
+    <section id="tab-dashboard" class="tab-pane" style="display: none;">
+      
+      <!-- Cabeçalho do Dashboard Geral -->
+      <div class="month-selector-bar">
+        <div>
+          <h2 style="font-family: var(--font-serif); font-size: 24px; color: var(--text-primary); margin-bottom: 4px;">Visão Geral de Todos os Meses</h2>
+          <p style="font-size: 13.5px; color: var(--text-secondary);">Análise histórica consolidada de gastos, categorias e maiores despesas de todos os tempos.</p>
+        </div>
+        <div class="action-buttons-group">
+          <select class="filter-select" id="dashboardYearFilter">
+            <option value="all">Todos os Anos</option>
+            <option value="2026" selected>Ano 2026</option>
+            <option value="2025">Ano 2025</option>
+          </select>
+          <button class="btn btn-outline btn-sm" id="btnRefreshCharts">Atualizar Gráficos</button>
+        </div>
+      </div>
+
+      <!-- KPIs Globais Históricos -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span class="kpi-title">Total Histórico de Gastos</span>
+            <div class="kpi-icon-bubble">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+          </div>
+          <div class="kpi-value" id="kpiGlobalTotalExpenses">R$ 0,00</div>
+          <div class="kpi-subtext" id="kpiGlobalExpensesCount">0 despesas no total</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span class="kpi-title">Média Mensal de Gastos</span>
+            <div class="kpi-icon-bubble">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"/>
+                <line x1="12" y1="20" x2="12" y2="4"/>
+                <line x1="6" y1="20" x2="6" y2="14"/>
+              </svg>
+            </div>
+          </div>
+          <div class="kpi-value" id="kpiGlobalMonthlyAverage">R$ 0,00</div>
+          <div class="kpi-subtext">Baseado nos meses registrados</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span class="kpi-title">Mês com Maior Gasto</span>
+            <div class="kpi-icon-bubble">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            </div>
+          </div>
+          <div class="kpi-value" id="kpiGlobalPeakMonth">-</div>
+          <div class="kpi-subtext" id="kpiGlobalPeakMonthAmount">R$ 0,00</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span class="kpi-title">Fixos vs Variáveis (% Geral)</span>
+            <div class="kpi-icon-bubble">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21.21 15.89A10 10 0 1 1 8 2.83"/>
+                <path d="M22 12A10 10 0 0 0 12 2v10z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="kpi-value" id="kpiGlobalFixedVsVarRatio">0% / 0%</div>
+          <div class="kpi-subtext">Fixos vs Variáveis acumulados</div>
+        </div>
+      </div>
+
+      <!-- Grid de Gráficos 2x2 -->
+      <div class="charts-grid-2col">
+        <!-- Gráfico 1: Evolução Mensal Fixos vs Variáveis -->
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <div>
+              <h3>Evolução Mensal de Gastos</h3>
+              <span class="chart-card-subtitle">Comparativo mês a mês de Contas Fixas vs Contas Variáveis</span>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas id="chartMonthlyEvolution"></canvas>
+          </div>
+        </div>
+
+        <!-- Gráfico 2: Top Maiores Gastos -->
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <div>
+              <h3>Maiores Gastos Registrados</h3>
+              <span class="chart-card-subtitle">Os itens com maiores valores individuais comprados</span>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas id="chartTopExpenses"></canvas>
+          </div>
+        </div>
+
+        <!-- Gráfico 3: Gastos por Categoria -->
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <div>
+              <h3>Distribuição por Categoria</h3>
+              <span class="chart-card-subtitle">Onde o seu dinheiro foi mais investido no geral</span>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas id="chartCategoryDistribution"></canvas>
+          </div>
+        </div>
+
+        <!-- Gráfico 4: À Vista vs A Prazo -->
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <div>
+              <h3>Forma de Pagamento (À Vista vs A Prazo)</h3>
+              <span class="chart-card-subtitle">Proporção de compras imediatas versus parceladas</span>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas id="chartPaymentDistribution"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabela Top 10 Maiores Gastos Históricos -->
+      <div class="table-card">
+        <div class="table-header-title">
+          <div>
+            <h3>Ranking dos Maiores Gastos de Todos os Meses</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-top: 3px;">Lista ordenada das despesas de maior impacto no orçamento.</p>
+          </div>
+          <span class="badge badge-variable">Top 15 Despesas</span>
+        </div>
+        <div class="table-responsive">
+          <table class="payin-table" id="rankingExpensesTable">
+            <thead>
+              <tr>
+                <th style="width: 50px;">#</th>
+                <th>O que foi comprado / Descrição</th>
+                <th>Mês de Competência</th>
+                <th>Categoria</th>
+                <th>Tipo</th>
+                <th>Forma de Pagamento</th>
+                <th>Valor</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="rankingExpensesTableBody">
+              <!-- Renderizado via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ======================================================================
+         ABA 3: RELATÓRIOS & CSV / BANCO DE DADOS
+         ====================================================================== -->
+    <section id="tab-reports" class="tab-pane" style="display: none;">
+      
+      <div class="month-selector-bar">
+        <div>
+          <h2 style="font-family: var(--font-serif); font-size: 24px; color: var(--text-primary); margin-bottom: 4px;">Relatórios, CSV e Banco de Dados</h2>
+          <p style="font-size: 13.5px; color: var(--text-secondary);">Exporte planilhas completas em formato CSV (compatível com Excel), faça backup ou restaure seus dados.</p>
+        </div>
+        <div class="action-buttons-group">
+          <span class="badge badge-paid" id="serverStatusBadge">Banco de Dados Local Ativo</span>
+        </div>
+      </div>
+
+      <!-- Caixas de Ação de Exportação -->
+      <div class="export-card-grid">
+        <!-- Exportar CSV Todos os Meses -->
+        <div class="export-box">
+          <div class="export-box-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+          </div>
+          <div>
+            <h4>Exportar CSV Geral (Todos os Meses)</h4>
+            <p>Gera uma planilha completa com todas as despesas (fixas e variáveis), valores, observações e formas de pagamento, formatada com codificação UTF-8 para abrir perfeitamente no Microsoft Excel.</p>
+          </div>
+          <button class="btn btn-primary" id="btnExportAllCsv">
+            Baixar CSV Geral
+          </button>
+        </div>
+
+        <!-- Exportar CSV Mês Atual -->
+        <div class="export-box">
+          <div class="export-box-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+          </div>
+          <div>
+            <h4>Exportar CSV do Mês Selecionado</h4>
+            <p>Exporta apenas os lançamentos do mês em exibição (<strong id="exportMonthLabelName">Novembro/2026</strong>) para fechamento ou prestação de contas mensal.</p>
+          </div>
+          <button class="btn btn-secondary" id="btnExportMonthCsv">
+            Baixar CSV do Mês
+          </button>
+        </div>
+
+        <!-- Backup Completo JSON -->
+        <div class="export-box">
+          <div class="export-box-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+              <polyline points="17 21 17 13 7 13 7 21"/>
+              <polyline points="7 3 7 8 15 8"/>
+            </svg>
+          </div>
+          <div>
+            <h4>Backup Completo (JSON)</h4>
+            <p>Faça o download de um arquivo seguro com todos os usuários, despesas, receitas e configurações para restauração a qualquer momento.</p>
+          </div>
+          <button class="btn btn-gold" id="btnExportJsonBackup">
+            Baixar Backup JSON
+          </button>
+        </div>
+      </div>
+
+      <!-- Área de Importação e Dados Locais -->
+      <div class="table-card" style="padding: 28px;">
+        <h3 style="font-family: var(--font-serif); font-size: 20px; color: var(--text-primary); margin-bottom: 8px;">Restaurar Dados ou Importar CSV</h3>
+        <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 20px;">
+          Selecione um arquivo <code>.csv</code> ou <code>.json</code> exportado pelo Payin para adicionar os registros ao seu usuário ativo.
+        </p>
+        
+        <div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
+          <input type="file" id="importFileInput" accept=".csv, .json" style="display: none;">
+          <button class="btn btn-secondary" onclick="document.getElementById('importFileInput').click()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="17 8 12 3 7 8"/>
+              <line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+            Selecionar Arquivo no Computador
+          </button>
+          <span id="selectedFileName" style="font-size: 13px; color: var(--text-muted);">Nenhum arquivo selecionado</span>
+        </div>
+
+        <div style="margin-top: 24px; padding: 16px; background-color: var(--bg-secondary); border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+          <h5 style="font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px;">
+            Armazenamento Local no seu Computador
+          </h5>
+          <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5;">
+            Os dados do Payin ficam salvos com total privacidade no seu navegador e na pasta local <code>data/</code> do projeto (em arquivos <code>database.json</code> e <code>despesas_payin.csv</code>). Você pode alternar entre usuários e todos os dados ficam separados individualmente.
+          </p>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       MODAIS DO SISTEMA
+       ========================================================================== -->
+
+  <!-- MODAL: CADASTRAR / EDITAR GASTO -->
+  <div class="modal-overlay" id="modalExpense">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="modalExpenseTitle">Novo Cadastro de Gasto</h3>
+        <button class="btn-close-modal" id="btnCloseExpenseModal" aria-label="Fechar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <form id="formExpense">
+        <div class="modal-body">
+          <input type="hidden" id="expenseEditId" value="">
+
+          <!-- SELEÇÃO: TIPO DE GASTO (FIXO OU VARIÁVEL) -->
+          <div class="form-group">
+            <label class="form-label">Tipo de Gasto <span class="req">*</span></label>
+            <div class="segmented-control">
+              <div class="segmented-option">
+                <input type="radio" name="expenseType" id="typeFixo" value="fixo" checked>
+                <label for="typeFixo">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7"/>
+                    <rect x="14" y="3" width="7" height="7"/>
+                    <rect x="14" y="14" width="7" height="7"/>
+                    <rect x="3" y="14" width="7" height="7"/>
+                  </svg>
+                  Conta Fixa
+                </label>
+              </div>
+              <div class="segmented-option">
+                <input type="radio" name="expenseType" id="typeVariavel" value="variavel">
+                <label for="typeVariavel">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="9" cy="21" r="1"/>
+                    <circle cx="20" cy="21" r="1"/>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                  </svg>
+                  Conta Variável
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- SE FOR CONTA FIXA: QUAL O TIPO DE CONTA FIXA -->
+          <div class="form-group" id="containerFixedType">
+            <label class="form-label" for="fixedAccountTypeSelect">Qual o tipo de conta fixa? <span class="req">*</span></label>
+            <select class="form-control" id="fixedAccountTypeSelect">
+              <option value="Aluguel / Moradia">Aluguel / Moradia</option>
+              <option value="Condomínio">Condomínio</option>
+              <option value="Energia Elétrica (Luz)">Energia Elétrica (Luz)</option>
+              <option value="Água e Saneamento">Água e Saneamento</option>
+              <option value="Internet / Wi-Fi">Internet / Wi-Fi</option>
+              <option value="Telefonia / Celular">Telefonia / Celular</option>
+              <option value="Gás Encanado">Gás Encanado</option>
+              <option value="Assinaturas / Streaming">Assinaturas / Streaming (Netflix, Spotify, etc.)</option>
+              <option value="Financiamento Imobiliário/Auto">Financiamento Imobiliário / Auto</option>
+              <option value="Seguro Auto / Residencial">Seguro Auto / Residencial / Vida</option>
+              <option value="Plano de Saúde / Odonto">Plano de Saúde / Odonto</option>
+              <option value="Mensalidade Escolar / Faculdade">Mensalidade Escolar / Faculdade</option>
+              <option value="Academia / Clube">Academia / Clube</option>
+              <option value="Outra Conta Fixa">Outra Conta Fixa (especificar)</option>
+            </select>
+          </div>
+
+          <!-- DESCRIÇÃO / O QUE FOI COMPRADO -->
+          <div class="form-group">
+            <label class="form-label" for="expenseDescription">
+              <span id="labelDescription">O que foi comprado ou identificado?</span> <span class="req">*</span>
+            </label>
+            <input type="text" class="form-control" id="expenseDescription" placeholder="Ex: Compras da semana no mercado, Tênis novo, Jantar..." required>
+          </div>
+
+          <!-- CATEGORIA GERAL -->
+          <div class="form-group">
+            <label class="form-label" for="expenseCategorySelect">Categoria de Custo <span class="req">*</span></label>
+            <select class="form-control" id="expenseCategorySelect" required>
+              <option value="Moradia">Moradia</option>
+              <option value="Alimentação / Mercado">Alimentação / Supermercado</option>
+              <option value="Restaurantes / Delivery">Restaurantes / Bares / Delivery</option>
+              <option value="Transporte / Combustível">Transporte / Combustível / Uber</option>
+              <option value="Lazer / Viagens">Lazer / Viagens / Entretenimento</option>
+              <option value="Saúde / Farmácia">Saúde / Farmácia / Cuidados</option>
+              <option value="Educação / Cursos">Educação / Livros / Cursos</option>
+              <option value="Vestuário / Moda">Vestuário / Calçados / Moda</option>
+              <option value="Eletrônicos / Tecnologia">Eletrônicos / Tecnologia</option>
+              <option value="Serviços / Assinaturas">Serviços / Assinaturas</option>
+              <option value="Outros">Outros</option>
+            </select>
+          </div>
+
+          <!-- VALOR E DATA DE VENCIMENTO/COMPRA -->
+          <div class="form-row-2col">
+            <div class="form-group">
+              <label class="form-label" for="expenseAmount">Valor (R$) <span class="req">*</span></label>
+              <input type="number" step="0.01" min="0.01" class="form-control" id="expenseAmount" placeholder="0,00" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="expenseDate">Data da Compra / Vencimento <span class="req">*</span></label>
+              <input type="date" class="form-control" id="expenseDate" required>
+            </div>
+          </div>
+
+          <!-- MÊS DE COMPETÊNCIA -->
+          <div class="form-row-2col">
+            <div class="form-group">
+              <label class="form-label" for="expenseTargetMonth">Mês de Competência <span class="req">*</span></label>
+              <input type="month" class="form-control" id="expenseTargetMonth" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Status do Pagamento <span class="req">*</span></label>
+              <select class="form-control" id="expenseStatusSelect">
+                <option value="pago">Pago</option>
+                <option value="pendente">Pendente</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- FORMA DE PAGAMENTO: À VISTA OU A PRAZO -->
+          <div class="form-group">
+            <label class="form-label">Condição de Pagamento <span class="req">*</span></label>
+            <div class="segmented-control">
+              <div class="segmented-option">
+                <input type="radio" name="expensePaymentTerm" id="termVista" value="vista" checked>
+                <label for="termVista">À Vista</label>
+              </div>
+              <div class="segmented-option">
+                <input type="radio" name="expensePaymentTerm" id="termPrazo" value="prazo">
+                <label for="termPrazo">A Prazo (Parcelado)</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- DETALHES DE PAGAMENTO E PARCELAS -->
+          <div class="form-row-2col">
+            <div class="form-group">
+              <label class="form-label" for="expensePaymentMethod">Meio de Pagamento</label>
+              <select class="form-control" id="expensePaymentMethod">
+                <option value="Pix">Pix</option>
+                <option value="Cartão de Crédito">Cartão de Crédito</option>
+                <option value="Cartão de Débito">Cartão de Débito</option>
+                <option value="Boleto">Boleto Bancário</option>
+                <option value="Dinheiro">Dinheiro Físico</option>
+                <option value="Transferência">Transferência / TED</option>
+              </select>
+            </div>
+
+            <!-- Se for A Prazo: Parcelas -->
+            <div class="form-group" id="containerInstallments" style="display: none;">
+              <label class="form-label" for="expenseInstallmentTotal">Parcelamento</label>
+              <div style="display: flex; gap: 8px; align-items: center;">
+                <input type="number" min="1" max="96" value="1" class="form-control" id="expenseInstallmentCurrent" placeholder="Atual" style="width: 70px;">
+                <span style="color: var(--text-muted);">de</span>
+                <input type="number" min="1" max="96" value="3" class="form-control" id="expenseInstallmentTotal" placeholder="Total" style="width: 70px;">
+                <span style="font-size: 13px; color: var(--text-muted);">vezes</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- OPÇÕES INTELIGENTES ADICIONAIS -->
+          <!-- Se for Conta Fixa: replicar para o resto do ano -->
+          <div class="checkbox-card" id="cardReplicateFixed">
+            <input type="checkbox" id="checkReplicateFixed">
+            <div class="checkbox-card-info">
+              <h6>Replicar esta conta para todos os meses do ano</h6>
+              <p>Cadastra automaticamente esta mesma conta fixa nos meses seguintes até o final do ano atual.</p>
+            </div>
+          </div>
+
+          <!-- Se for A Prazo: gerar parcelas futuras automaticamente -->
+          <div class="checkbox-card" id="cardGenerateInstallments" style="display: none;">
+            <input type="checkbox" id="checkGenerateInstallments">
+            <div class="checkbox-card-info">
+              <h6>Lançar parcelas futuras automaticamente</h6>
+              <p>Cria as parcelas restantes nos próximos meses com suas respectivas datas de vencimento.</p>
+            </div>
+          </div>
+
+          <!-- OBSERVAÇÕES -->
+          <div class="form-group" style="margin-top: 16px;">
+            <label class="form-label" for="expenseNotes">Observações</label>
+            <textarea class="form-control" id="expenseNotes" placeholder="Adicione notas, detalhes sobre a compra, cupom, onde comprou ou lembretes..."></textarea>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" id="btnCancelExpenseModal">Cancelar</button>
+          <button type="submit" class="btn btn-primary" id="btnSaveExpense">Salvar Cadastro</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: CADASTRAR NOVA RECEITA -->
+  <div class="modal-overlay" id="modalIncome">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Cadastrar Receita do Mês</h3>
+        <button class="btn-close-modal" id="btnCloseIncomeModal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <form id="formIncome">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="incomeDescription">Origem / Descrição da Receita <span class="req">*</span></label>
+            <input type="text" class="form-control" id="incomeDescription" placeholder="Ex: Salário Mensal, Freelance projeto X, Rendimentos..." required>
+          </div>
+          <div class="form-row-2col">
+            <div class="form-group">
+              <label class="form-label" for="incomeAmount">Valor Recebido (R$) <span class="req">*</span></label>
+              <input type="number" step="0.01" min="0.01" class="form-control" id="incomeAmount" placeholder="0,00" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="incomeDate">Data <span class="req">*</span></label>
+              <input type="date" class="form-control" id="incomeDate" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="incomeTargetMonth">Mês de Competência <span class="req">*</span></label>
+            <input type="month" class="form-control" id="incomeTargetMonth" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="incomeCategory">Categoria da Receita</label>
+            <select class="form-control" id="incomeCategory">
+              <option value="Salário">Salário / Pró-labore</option>
+              <option value="Freelance">Freelance / Serviços Extras</option>
+              <option value="Investimentos">Investimentos / Dividendos</option>
+              <option value="Reembolso">Reembolso / Devolução</option>
+              <option value="Outros">Outras Entradas</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" id="btnCancelIncomeModal">Cancelar</button>
+          <button type="submit" class="btn btn-gold">Salvar Receita</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: GERENCIAR USUÁRIOS (LOGIN / NOVO USUÁRIO) -->
+  <div class="modal-overlay" id="modalUser">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Gerenciar Usuários - Payin</h3>
+        <button class="btn-close-modal" id="btnCloseUserModal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5 style="font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 12px;">Selecione o Usuário Ativo:</h5>
+        
+        <div id="usersListContainer" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px;">
+          <!-- Lista de usuários dinâmicos -->
+        </div>
+
+        <div style="border-top: 1px solid var(--border-subtle); padding-top: 20px;">
+          <h5 style="font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 14px;">Cadastrar Novo Usuário:</h5>
+          <form id="formNewUser">
+            <div class="form-group">
+              <label class="form-label" for="newUserName">Nome Completo ou Apelido <span class="req">*</span></label>
+              <input type="text" class="form-control" id="newUserName" placeholder="Ex: Lucas Candoti" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="newUserEmail">E-mail ou Identificador</label>
+              <input type="text" class="form-control" id="newUserEmail" placeholder="Ex: lucas@email.com">
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+              Criar e Entrar com este Usuário
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Container de Toasts de Notificação -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="js/chart.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
